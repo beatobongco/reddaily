@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    <div v-for="category in categories">
+      <h3>{{ category.capitalize() }} </h3>
+      <ul>
+        <li v-for="post in db[category].posts">
+          <a :href="post.url">{{ post.subreddit }} - {{ post.title }} - {{ post.score }}</a>
+          <a :href="post.permalink">Comments</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.3.0/superagent.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+<script type="text/javascript">
+  // RedDaily
+  // peg http://www.daemonology.net/hn-daily/
+  // features I want
+  // - preview on hover
+  // - comments link
+  // - toggle daily, weekly, monthly
+  // - accept subreddit to watch with validation
+  // - have my favorite defaults installed
+  // - top 10 by day default
+  // - reddit digest, consumable list of top 3 of all selected subreddits
+  // - maybe refill after read?
+  // - divide into categories: tech, trivia, design, sports
+  // todo: fix reddit ampersand bug. Create filter or something e.g. https://i.reddituploads.com/b50b8974109447febb86e0dceaa503eb?fit=max&amp;h=1536&amp;w=1536&amp;s=f0bdbe85f7e1013a32551457a8029130
+  var subredditMax = 3
+  var items = []
+  var db = {
+    tech: {
+      subreddits: ["programming", "futurology", "tech", "linux", "learnprogramming", "python", "javascript"],
+      posts: []
+    },
+    design: {
+      subreddits: ["design", "web_design", "DataIsBeautiful"],
+      posts: []
+    },
+    sports: {
+      subreddits: ["climbing"],
+      posts: []
+    },
+    trivia: {
+      subreddits: ["IAmA", "books", "askhistorians", "explainlikeimfive", "LifeProTips", "lifehacks", "YouShouldKnow", "TrueReddit"],
+      posts: []
+    }
+  }
+
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+
+  function fixRedditLinks(link) {
+    if (link.split('.')[1] === "reddituploads") {
+      return link.replace(/&amp;/g, "&")
+    }
+    return link
+  }
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      mode: "month",
+      categories: ["tech", "design", "sports", "trivia"],
+      db: db,
+    },
+    methods: {
+      retrieveAll: function() {
+        for (var i = 0; i < app.categories.length; i++) {
+          app.retrievePosts(app.categories[i])
+        }
+      },
+      retrievePosts: function(category) {
+        var subreddits = db[category].subreddits
+        for (var i = 0; i < subreddits.length; i++) {
+          superagent
+            .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + app.mode)
+            .end(function(e, r) {
+              var posts = r.body.data.children.slice(0, subredditMax)
+              for (var i = 0; i < posts.length; i++) {
+                var data = posts[i].data
+
+                //preprocess URL
+                var url = data.url
+                url = fixRedditLinks(url)
+
+                var permalink = "https://www.reddit.com" + data.permalink
+                db[category].posts.push({
+                  title: data.title,
+                  url: url,
+                  score: data.score,
+                  subreddit: data.subreddit,
+                  permalink: permalink
+                })
+              }
+              db[category].posts = _.sortBy(db[category].posts, "score").reverse()
+            })
+        }
+      },
+    },
+  })
+
+  app.retrieveAll()
+
+</script>
+</body>
+</html>
