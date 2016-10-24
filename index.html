@@ -2,14 +2,14 @@
 <html>
 <head>
   <title>Your daily dose of less distracting reddit</title>
-  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:400" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
   <div class="app" id="app">
-    <div class="category-container" v-for="category in categories">
+    <div class="category-container" v-for="category in categories" v-cloak>
       <div class="category" v-bind:class="[category]">
         <h3>{{ category }} </h3>
         <ol>
@@ -33,13 +33,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <script type="text/javascript">
-  // RedDaily
-  // peg http://www.daemonology.net/hn-daily/
-  // features I want
   // - toggle daily, weekly, monthly
   // - accept subreddit to watch with validation
-  // - have read more. float important ones up top
-  // - rank pages
   var subredditMax = 3
   var items = []
   var db = {
@@ -118,7 +113,6 @@
                 })
               }
               db[category].posts = _.sortBy(db[category].posts, "score").reverse()
-              // Get top 3 per category and highlight
             })
         }
       },
