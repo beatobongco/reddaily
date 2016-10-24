@@ -1,6 +1,12 @@
 // - accept subreddit to watch with validation, save to localforage
 var subredditMax = 3
-var mode = Qs.parse(location.search.replace("?", "")).t || "day"
+var mode = location.hash
+
+if (["day", "week", "month", "year", "all"].indexOf(location.hash) < 0) {
+  mode = "day"
+  location.hash = "day"
+}
+
 var items = []
 var titleText = {
   day: "Daily",
@@ -63,7 +69,7 @@ var app = new Vue({
     switchMode: function(mode, e) {
       e.preventDefault()
       this.mode = mode
-      location.search = "?t=" + this.mode
+      location.hash = this.mode
     },
     incrementLimit: function(category, e) {
       e.preventDefault()
@@ -108,7 +114,7 @@ var app = new Vue({
     },
   },
 })
-if (location.search === "") {
-  location.search = "?t=day"
+if (location.hash === "") {
+  location.hash = "day"
 }
 app.retrieveAll()
