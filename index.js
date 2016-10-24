@@ -86,8 +86,7 @@ var app = new Vue({
               var data = posts[i].data
               var url = data.url
               url = fixRedditLinks(url)
-              var title = data.title
-              title = fixRedditLinks(title)
+              var title = data.title.replace("&amp;", "&")
               //extra rules go here
 
               var permalink = "https://www.reddit.com" + data.permalink
