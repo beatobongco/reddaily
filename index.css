@@ -61,26 +61,32 @@ ol {
 }
 .category-container .category {
   height: 100%;
-  padding: 15px;
 }
 .category-container .category h3 {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
   font-size: 42px;
-  color: #000000;
+  color: #fff;
   margin: 0;
+  padding: 15px;
 }
-.category-container .category.tech {
-  background-color: #7CC6FE;
+.category-container .category h3.tech {
+  background-color: #0B3C5D;
+}
+.category-container .category h3.design {
+  background-color: #328CC1;
+}
+.category-container .category h3.sports {
+  background-color: #D9B310;
+}
+.category-container .category h3.trivia {
+  background-color: #1D2731;
 }
 .category-container .category.design {
-  background-color: #DBF9F4;
-}
-.category-container .category.sports {
-  background-color: #F3D8C7;
+  background-color: #ecf0f1;
 }
 .category-container .category.trivia {
-  background-color: #F8C7CC;
+  background-color: #ecf0f1;
 }
 .category-container .readmore {
   display: block;
@@ -89,31 +95,35 @@ ol {
   font-size: 12px;
   text-decoration: underline;
 }
-ol,
-ul {
+.list-container {
+  padding: 15px;
+}
+.list-container ol,
+.list-container ul {
+  margin: 0;
   color: #000000;
 }
-ol .post .title,
-ul .post .title {
+.list-container ol .post .title,
+.list-container ul .post .title {
   font-size: 14px;
   color: #000000;
 }
-ol .post .title:visited,
-ul .post .title:visited {
+.list-container ol .post .title:visited,
+.list-container ul .post .title:visited {
   color: #888888;
 }
-ol .post .info,
-ul .post .info {
+.list-container ol .post .info,
+.list-container ul .post .info {
   margin: 5px 0 10px;
   font-size: 10px;
   color: #888888;
 }
-ol .post .info a,
-ul .post .info a {
+.list-container ol .post .info a,
+.list-container ul .post .info a {
   color: #888888;
 }
-ol .post .info .subreddit,
-ul .post .info .subreddit {
+.list-container ol .post .info .subreddit,
+.list-container ul .post .info .subreddit {
   font-weight: 700;
 }
 @keyframes fadeInUp {
@@ -122,7 +132,7 @@ ul .post .info .subreddit {
     transform: translate3d(0, 25%, 0);
   }
   to {
-    opacity: 1.5;
+    opacity: 1;
     transform: none;
   }
 }
@@ -130,6 +140,6 @@ ul .post .info .subreddit {
   animation-name: fadeInUp;
 }
 .animated {
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
 }

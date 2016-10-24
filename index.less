@@ -79,28 +79,47 @@ ol {
 
   .category {
     height: 100%;
-    padding: 15px;
 
     h3 {
       font-family: 'Ubuntu', sans-serif;
       font-weight: 400;
       font-size: 42px;
-      color: @fontcolor;
+      color: #fff;
       margin: 0;
+      padding: 15px;
+      &.tech {
+        background-color: #0B3C5D;
+      }
+      &.design {
+        background-color: #328CC1;
+      }
+      &.sports {
+        background-color: #D9B310;
+      }
+      &.trivia {
+        background-color: #1D2731;
+      }
     }
 
-    &.tech {
-      background-color: #7CC6FE;
-    }
+    // &.tech {
+    //   background-color: #7CC6FE;
+    // }
+    // &.design {
+    //   background-color: #DBF9F4;
+    // }
+    // &.sports {
+    //   background-color: #F3D8C7;
+    // }
+    // &.trivia {
+    //   background-color: #F8C7CC;
+    // }
     &.design {
-      background-color: #DBF9F4;
-    }
-    &.sports {
-      background-color: #F3D8C7;
+      background-color: #ecf0f1;
     }
     &.trivia {
-      background-color: #F8C7CC;
+      background-color: #ecf0f1;
     }
+
   }
   .readmore {
     display: block;
@@ -111,30 +130,33 @@ ol {
   }
 }
 
-
-ol,
-ul {
-  color: @fontcolor;
-  .post {
-    .title {
-      font-size: 14px;
-      color: @fontcolor;
-      &:visited {
-        color: @fontcolordarker;
-      }
-    }
-
-    .info {
-      margin: 5px 0 10px;
-      font-size: 10px;
-      color: @fontcolordarker;
-
-      a {
-        color: @fontcolordarker;
+.list-container {
+  padding: 15px;
+  ol,
+  ul {
+    margin: 0;
+    color: @fontcolor;
+    .post {
+      .title {
+        font-size: 14px;
+        color: @fontcolor;
+        &:visited {
+          color: @fontcolordarker;
+        }
       }
 
-      .subreddit {
-        font-weight: 700;
+      .info {
+        margin: 5px 0 10px;
+        font-size: 10px;
+        color: @fontcolordarker;
+
+        a {
+          color: @fontcolordarker;
+        }
+
+        .subreddit {
+          font-weight: 700;
+        }
       }
     }
   }
@@ -147,7 +169,7 @@ ul {
   }
 
   to {
-    opacity: 1.5;
+    opacity: 1;
     transform: none;
   }
 }
@@ -157,6 +179,6 @@ ul {
 }
 
 .animated {
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
 }

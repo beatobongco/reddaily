@@ -26,22 +26,24 @@
     </div>
     <div class="category-container" v-for="category in categories" v-cloak>
       <div class="category" v-bind:class="[category]">
-        <h3>{{ category }} </h3>
-        <ol>
-          <li class="post animated fadeInUp" v-for="post in db[category].posts.slice(0, db[category].showLimit)">
-            <a class="title" :href="post.url">{{ post.title }}</a>
-            <div class="info">
-              <a class="comments" :href="post.permalink">comments ({{ post.comments }})</a>
-              &middot;
-              <span class="subreddit">{{ post.subreddit }}</span>
-              &middot;
-              <span>{{ post.score }} points</span>
-              &middot;
-              <span class="created"> {{ moment(post.created, 'X').fromNow() }} </span>
-            </div>
-          </li>
-        </ol>
-        <a class="readmore" href="#" v-on:click="incrementLimit(category, $event)">read more</a>
+        <h3 v-bind:class="[category]">{{ category }} </h3>
+        <div class="list-container">
+          <ol>
+            <li class="post animated fadeInUp" v-for="post in db[category].posts.slice(0, db[category].showLimit)">
+              <a class="title" :href="post.url">{{ post.title }}</a>
+              <div class="info">
+                <a class="comments" :href="post.permalink">comments ({{ post.comments }})</a>
+                &middot;
+                <span class="subreddit">{{ post.subreddit }}</span>
+                &middot;
+                <span>{{ post.score }} points</span>
+                &middot;
+                <span class="created"> {{ moment(post.created, 'X').fromNow() }} </span>
+              </div>
+            </li>
+          </ol>
+          <a class="readmore" href="#" v-on:click="incrementLimit(category, $event)">read more</a>
+        </div>
       </div>
     </div>
   </div>
