@@ -1,7 +1,4 @@
-// - toggle daily, weekly, monthly
-// - accept subreddit to watch with validation
-// - add url args to keep mode on
-
+// - accept subreddit to watch with validation, save to localforage
 var subredditMax = 3
 var mode = Qs.parse(location.search.replace("?", "")).t || "day"
 var items = []
@@ -105,9 +102,9 @@ var app = new Vue({
                 comments: data.num_comments
               })
             }
-            db[category].posts = _.sortBy(db[category].posts, "score").reverse()
           })
       }
+      db[category].posts = _.sortBy(db[category].posts, "score").reverse()
     },
   },
 })
