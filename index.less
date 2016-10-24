@@ -1,0 +1,84 @@
+@fontcolor: #FDFDFF;
+@fontcolordarker: #A0A0A0;
+
+h3 {
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  color: @fontcolor;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+}
+
+body {
+  background-color: #212121;
+}
+
+.app {
+  display: flex;
+}
+
+.category-container {
+  width: 25%;
+  height: 100%;
+  font-family: "Arvo", serif;
+  a {
+    text-decoration: none;
+  }
+  .category {
+    height: 100%;
+    padding: 15px;
+
+    &.tech {
+      background-color: #0B3C5D;
+    }
+    &.design {
+      background-color: #330F0A;
+    }
+    &.sports {
+      background-color: #1E2019;
+    }
+    &.trivia {
+      background-color: #1D2731;
+    }
+  }
+  .readmore {
+    display: block;
+    text-align: center;
+    color: @fontcolordarker;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+}
+
+
+ol {
+  color: @fontcolor;
+  .post {
+    .title {
+      font-size: 14px;
+      color: @fontcolor;
+      &:visited {
+        color: @fontcolordarker;
+      }
+    }
+
+    .info {
+      margin: 5px 0 10px;
+      font-size: 10px;
+      color: @fontcolordarker;
+
+      a {
+        color: @fontcolordarker;
+      }
+
+      .subreddit {
+        font-weight: 700;
+      }
+    }
+  }
+}

@@ -1,60 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Your daily dose of less distracting reddit</title>
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <div id="app">
-    <div v-for="category in categories">
-      <h3>{{ category.capitalize() }} </h3>
-      <ul>
-        <li v-for="post in db[category].posts">
-          <a :href="post.url">{{ post.subreddit }} - {{ post.title }} - {{ post.score }}</a>
-          <a :href="post.permalink">Comments</a>
-        </li>
-      </ul>
+  <div class="app" id="app">
+    <div class="category-container" v-for="category in categories">
+      <div class="category" v-bind:class="[category]">
+        <h3>{{ category }} </h3>
+        <ol>
+          <li class="post" v-for="post in db[category].posts.slice(0, db[category].showLimit)">
+            <a class="title" :href="post.url">{{ post.title }}</a>
+            <div class="info">
+              <a class="comments" :href="post.permalink">comments ({{ post.comments }})</a>
+              &middot;
+              <span class="subreddit">{{ post.subreddit }}</span>
+              &middot;
+              <span class="created"> {{ moment(post.created, 'X').fromNow() }} </span>
+            </div>
+          </li>
+        </ol>
+        <a class="readmore" href="#" v-on:click="incrementLimit(category, $event)">read more</a>
+      </div>
     </div>
   </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.3.0/superagent.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <script type="text/javascript">
   // RedDaily
   // peg http://www.daemonology.net/hn-daily/
   // features I want
-  // - preview on hover
-  // - comments link
   // - toggle daily, weekly, monthly
   // - accept subreddit to watch with validation
-  // - have my favorite defaults installed
-  // - top 10 by day default
-  // - reddit digest, consumable list of top 3 of all selected subreddits
-  // - maybe refill after read?
-  // - divide into categories: tech, trivia, design, sports
-  // todo: fix reddit ampersand bug. Create filter or something e.g. https://i.reddituploads.com/b50b8974109447febb86e0dceaa503eb?fit=max&amp;h=1536&amp;w=1536&amp;s=f0bdbe85f7e1013a32551457a8029130
+  // - have read more. float important ones up top
+  // - rank pages
   var subredditMax = 3
   var items = []
   var db = {
     tech: {
       subreddits: ["programming", "futurology", "tech", "linux", "learnprogramming", "python", "javascript"],
-      posts: []
+      posts: [],
+      showLimit: 5
     },
     design: {
-      subreddits: ["design", "web_design", "DataIsBeautiful"],
-      posts: []
+      subreddits: ["design", "graphic_design", "web_design", "webdesignnews", "UserExperience", "DataIsBeautiful", "typography"],
+      posts: [],
+      showLimit: 5
     },
     sports: {
-      subreddits: ["climbing"],
-      posts: []
+      subreddits: ["climbing", "bouldering", "climbingvids", "climbharder"],
+      posts: [],
+      showLimit: 5
     },
     trivia: {
-      subreddits: ["IAmA", "books", "askhistorians", "explainlikeimfive", "LifeProTips", "lifehacks", "YouShouldKnow", "TrueReddit"],
-      posts: []
+      subreddits: ["IAmA", "books", "askhistorians", "explainlikeimfive", "LifeProTips", "lifehacks", "YouShouldKnow", "TrueReddit", "interestingasfuck"],
+      posts: [],
+      showLimit: 5
     }
-  }
-
-  String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
   }
 
   function fixRedditLinks(link) {
@@ -67,11 +75,18 @@
   var app = new Vue({
     el: '#app',
     data: {
-      mode: "month",
+      mode: "day",
       categories: ["tech", "design", "sports", "trivia"],
       db: db,
     },
     methods: {
+      incrementLimit: function(category, e) {
+        e.preventDefault()
+        db[category].showLimit += 5
+        if (db[category].showLimit >= db[category].posts.length) {
+          e.target.style.display = "none"
+        }
+      },
       retrieveAll: function() {
         for (var i = 0; i < app.categories.length; i++) {
           app.retrievePosts(app.categories[i])
@@ -97,10 +112,13 @@
                   url: url,
                   score: data.score,
                   subreddit: data.subreddit,
-                  permalink: permalink
+                  permalink: permalink,
+                  created: data.created_utc,
+                  comments: data.num_comments
                 })
               }
               db[category].posts = _.sortBy(db[category].posts, "score").reverse()
+              // Get top 3 per category and highlight
             })
         }
       },
