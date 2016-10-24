@@ -1,5 +1,5 @@
-@headerfontcolor: #212121;
-@fontcolor: #212121;
+@headerfontcolor: #000;
+@fontcolor: #000;
 @fontcolordarker: #888;
 
 html {
@@ -46,6 +46,7 @@ ol {
   color: @headerfontcolor;
 
   a {
+    font-size: 12px;
     color: @headerfontcolor;
     &.selected {
       text-decoration: underline;
@@ -88,18 +89,18 @@ ol {
       margin: 0;
     }
 
-    // &.tech {
-    //   background-color: #0B3C5D;
-    // }
-    // &.design {
-    //   background-color: #330F0A;
-    // }
-    // &.sports {
-    //   background-color: #1E2019;
-    // }
-    // &.trivia {
-    //   background-color: #1D2731;
-    // }
+    &.tech {
+      background-color: #EFF9F0;
+    }
+    &.design {
+      background-color: #F6F7F8;
+    }
+    &.sports {
+      background-color: #7CC6FE;
+    }
+    &.trivia {
+      background-color: #DBF9F4;
+    }
   }
   .readmore {
     display: block;
@@ -111,7 +112,8 @@ ol {
 }
 
 
-ol {
+ol,
+ul {
   color: @fontcolor;
   .post {
     .title {

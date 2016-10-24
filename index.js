@@ -60,7 +60,9 @@ var app = new Vue({
     mode: function() {
       //empty all posts
       for (var i = 0; i < this.categories.length; i++) {
-        this.db[this.categories[i]].posts = []
+        var category = this.db[this.categories[i]]
+        category.posts = []
+        category.showLimit = 5
       }
       this.retrieveAll()
     }

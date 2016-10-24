@@ -30,10 +30,11 @@ ol {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  color: #212121;
+  color: #000000;
 }
 .header a {
-  color: #212121;
+  font-size: 12px;
+  color: #000000;
 }
 .header a.selected {
   text-decoration: underline;
@@ -66,8 +67,20 @@ ol {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
   font-size: 42px;
-  color: #212121;
+  color: #000000;
   margin: 0;
+}
+.category-container .category.tech {
+  background-color: #EFF9F0;
+}
+.category-container .category.design {
+  background-color: #F6F7F8;
+}
+.category-container .category.sports {
+  background-color: #7CC6FE;
+}
+.category-container .category.trivia {
+  background-color: #DBF9F4;
 }
 .category-container .readmore {
   display: block;
@@ -76,25 +89,31 @@ ol {
   font-size: 12px;
   text-decoration: underline;
 }
-ol {
-  color: #212121;
+ol,
+ul {
+  color: #000000;
 }
-ol .post .title {
+ol .post .title,
+ul .post .title {
   font-size: 14px;
-  color: #212121;
+  color: #000000;
 }
-ol .post .title:visited {
+ol .post .title:visited,
+ul .post .title:visited {
   color: #888888;
 }
-ol .post .info {
+ol .post .info,
+ul .post .info {
   margin: 5px 0 10px;
   font-size: 10px;
   color: #888888;
 }
-ol .post .info a {
+ol .post .info a,
+ul .post .info a {
   color: #888888;
 }
-ol .post .info .subreddit {
+ol .post .info .subreddit,
+ul .post .info .subreddit {
   font-weight: 700;
 }
 @keyframes fadeInUp {
