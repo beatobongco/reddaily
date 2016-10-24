@@ -18,7 +18,7 @@
   <h1 class="hidden">RedDaily</h1>
   <div class="app" id="app">
     <div class="header">
-      <h1><span>Red</span><span v-cloak>{{ titleText[mode] }}</span></h1>
+      <h1><span>Red</span><span>Daily</span></h1>
       <a v-bind:class="{selected: mode === 'day'}" href="#" v-on:click="switchMode('day', $event)">Daily</a> &middot;
       <a v-bind:class="{selected: mode === 'week'}" href="#" v-on:click="switchMode('week', $event)">Weekly</a> &middot;
       <a v-bind:class="{selected: mode === 'month'}" href="#" v-on:click="switchMode('month', $event)">Monthly</a> &middot;

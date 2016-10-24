@@ -8,13 +8,6 @@ if (["day", "week", "month", "year", "all"].indexOf(location.hash.replace("#", "
 }
 
 var items = []
-var titleText = {
-  day: "Daily",
-  week: "Weekly",
-  month: "Monthly",
-  year: "Yearly",
-  all: "AllTime"
-}
 var db = {
   tech: {
     subreddits: ["programming", "futurology", "tech", "linux", "learnprogramming", "python", "javascript"],
