@@ -86,11 +86,13 @@ var app = new Vue({
               var data = posts[i].data
               var url = data.url
               url = fixRedditLinks(url)
+              var title = data.title
+              title = fixRedditLinks(title)
               //extra rules go here
 
               var permalink = "https://www.reddit.com" + data.permalink
               db[category].posts.push({
-                title: data.title,
+                title: title,
                 url: url,
                 score: data.score,
                 subreddit: data.subreddit,
