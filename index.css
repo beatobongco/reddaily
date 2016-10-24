@@ -1,18 +1,18 @@
 [v-cloak] {
   display: none;
 }
-h3 {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
-  font-size: 42px;
-  color: #fdfdff;
-  margin: 0;
+.hidden {
+  display: none;
 }
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 body {
   background-color: #212121;
+}
+ol {
+  padding-left: 20px;
 }
 .app {
   display: -webkit-box;
@@ -20,6 +20,28 @@ body {
   display: flex;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+}
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fdfdff;
+}
+.header a {
+  color: #fdfdff;
+}
+.header a.selected {
+  text-decoration: underline;
+}
+.header h1 {
+  text-align: center;
+  font-weight: 400;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 50px;
+  margin: 20px 0 10px;
+}
+.header h1 span:first-child {
+  color: #e74c3c;
 }
 .category-container {
   -webkit-box-flex: 1;
@@ -30,12 +52,16 @@ body {
   height: 100%;
   font-family: "Lato", sans-serif;
 }
-.category-container a {
-  text-decoration: none;
-}
 .category-container .category {
   height: 100%;
   padding: 15px;
+}
+.category-container .category h3 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  font-size: 42px;
+  color: #fdfdff;
+  margin: 0;
 }
 .category-container .category.tech {
   background-color: #0B3C5D;

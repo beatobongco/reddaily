@@ -1,7 +1,17 @@
 // - toggle daily, weekly, monthly
 // - accept subreddit to watch with validation
+// - add url args to keep mode on
+
 var subredditMax = 3
+var mode = "day"
 var items = []
+var titleText = {
+  day: "Daily",
+  week: "Weekly",
+  month: "Monthly",
+  year: "Yearly",
+  all: "AllTime"
+}
 var db = {
   tech: {
     subreddits: ["programming", "futurology", "tech", "linux", "learnprogramming", "python", "javascript"],
@@ -25,6 +35,10 @@ var db = {
   }
 }
 
+String.prototype.capitalizeFirstLetter = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 function fixRedditLinks(link) {
   if (link.split('.')[1] === "reddituploads") {
     return link.replace(/&amp;/g, "&")
@@ -35,11 +49,24 @@ function fixRedditLinks(link) {
 var app = new Vue({
   el: '#app',
   data: {
-    mode: "day",
+    mode: mode,
     categories: ["tech", "design", "sports", "trivia"],
     db: db,
   },
+  watch: {
+    mode: function() {
+      //empty all posts
+      for (var i = 0; i < this.categories.length; i++) {
+        this.db[this.categories[i]].posts = []
+      }
+      this.retrieveAll()
+    }
+  },
   methods: {
+    switchMode: function(mode, e) {
+      e.preventDefault()
+      this.mode = mode
+    },
     incrementLimit: function(category, e) {
       e.preventDefault()
       db[category].showLimit += 5
@@ -48,15 +75,15 @@ var app = new Vue({
       }
     },
     retrieveAll: function() {
-      for (var i = 0; i < app.categories.length; i++) {
-        app.retrievePosts(app.categories[i])
+      for (var i = 0; i < this.categories.length; i++) {
+        this.retrievePosts(this.categories[i])
       }
     },
     retrievePosts: function(category) {
       var subreddits = db[category].subreddits
       for (var i = 0; i < subreddits.length; i++) {
         superagent
-          .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + app.mode)
+          .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + this.mode)
           .end(function(e, r) {
             var posts = r.body.data.children.slice(0, subredditMax)
             for (var i = 0; i < posts.length; i++) {

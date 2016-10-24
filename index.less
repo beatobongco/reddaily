@@ -5,20 +5,21 @@
   display: none;
 }
 
-h3 {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
-  font-size: 42px;
-  color: @fontcolor;
-  margin: 0;
+.hidden {
+  display: none;
 }
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 body {
   background-color: #212121;
+}
+
+ol {
+  padding-left: 20px;
 }
 
 .app {
@@ -29,6 +30,34 @@ body {
       flex-flow: row wrap;
 }
 
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+
+  color: @fontcolor;
+
+  a {
+    color: @fontcolor;
+    &.selected {
+      text-decoration: underline;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 400;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 50px;
+    margin: 20px 0 10px;
+
+    span:first-child {
+      color: #e74c3c;
+    }
+
+  }
+}
+
 .category-container {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -37,12 +66,18 @@ body {
   min-width: 300px;
   height: 100%;
   font-family: "Lato", sans-serif;
-  a {
-    text-decoration: none;
-  }
+
   .category {
     height: 100%;
     padding: 15px;
+
+    h3 {
+      font-family: 'Ubuntu', sans-serif;
+      font-weight: 400;
+      font-size: 42px;
+      color: @fontcolor;
+      margin: 0;
+    }
 
     &.tech {
       background-color: #0B3C5D;
