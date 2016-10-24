@@ -1,6 +1,13 @@
 @fontcolor: #FDFDFF;
 @fontcolordarker: #A0A0A0;
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 [v-cloak] {
   display: none;
 }
@@ -63,6 +70,7 @@ ol {
       -ms-flex: 1;
           flex: 1;
   width: 25%;
+  max-width: 100%;
   min-width: 300px;
   height: 100%;
   font-family: "Lato", sans-serif;
