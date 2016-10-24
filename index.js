@@ -1,8 +1,8 @@
 // - accept subreddit to watch with validation, save to localforage
 var subredditMax = 3
-var mode = location.hash
+var mode = location.hash.replace("#", "")
 
-if (["day", "week", "month", "year", "all"].indexOf(location.hash) < 0) {
+if (["day", "week", "month", "year", "all"].indexOf(location.hash.replace("#", "")) < 0) {
   mode = "day"
   location.hash = "day"
 }
