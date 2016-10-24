@@ -1,5 +1,6 @@
-@fontcolor: #FDFDFF;
-@fontcolordarker: #A0A0A0;
+@headerfontcolor: #212121;
+@fontcolor: #212121;
+@fontcolordarker: #888;
 
 html {
   box-sizing: border-box;
@@ -22,7 +23,7 @@ a {
 }
 
 body {
-  background-color: #212121;
+  //background-color: #f4f7f8;
 }
 
 ol {
@@ -42,10 +43,10 @@ ol {
   text-align: center;
   margin-bottom: 20px;
 
-  color: @fontcolor;
+  color: @headerfontcolor;
 
   a {
-    color: @fontcolor;
+    color: @headerfontcolor;
     &.selected {
       text-decoration: underline;
     }
@@ -59,7 +60,7 @@ ol {
     margin: 20px 0 10px;
 
     span:first-child {
-      color: #e74c3c;
+      color: #c0392b;
     }
 
   }
@@ -87,18 +88,18 @@ ol {
       margin: 0;
     }
 
-    &.tech {
-      background-color: #0B3C5D;
-    }
-    &.design {
-      background-color: #330F0A;
-    }
-    &.sports {
-      background-color: #1E2019;
-    }
-    &.trivia {
-      background-color: #1D2731;
-    }
+    // &.tech {
+    //   background-color: #0B3C5D;
+    // }
+    // &.design {
+    //   background-color: #330F0A;
+    // }
+    // &.sports {
+    //   background-color: #1E2019;
+    // }
+    // &.trivia {
+    //   background-color: #1D2731;
+    // }
   }
   .readmore {
     display: block;

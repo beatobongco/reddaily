@@ -84,12 +84,12 @@ var app = new Vue({
           .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + this.mode)
           .end(function(e, r) {
             var posts = r.body.data.children.slice(0, subredditMax)
+            //preprocess the each post
             for (var i = 0; i < posts.length; i++) {
               var data = posts[i].data
-
-              //preprocess URL
               var url = data.url
               url = fixRedditLinks(url)
+              //extra rules go here
 
               var permalink = "https://www.reddit.com" + data.permalink
               db[category].posts.push({
@@ -102,9 +102,9 @@ var app = new Vue({
                 comments: data.num_comments
               })
             }
+            db[category].posts = _.sortBy(db[category].posts, "score").reverse()
           })
       }
-      db[category].posts = _.sortBy(db[category].posts, "score").reverse()
     },
   },
 })
