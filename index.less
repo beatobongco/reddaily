@@ -22,11 +22,17 @@ body {
 }
 
 .app {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
 }
 
 .category-container {
   width: 25%;
+  max-width: 25%;
+  min-width: 300px;
   height: 100%;
   font-family: "Lato", sans-serif;
   a {
