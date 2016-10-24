@@ -18,7 +18,7 @@
   <h1 class="hidden">RedDaily</h1>
   <div class="app" id="app">
     <div class="header">
-      <h1 v-cloak><span>Red</span>{{ titleText[mode] }}</h1>
+      <h1><span>Red</span><span v-cloak>{{ titleText[mode] }}</span></h1>
       <a v-bind:class="{selected: mode === 'day'}" href="#" v-on:click="switchMode('day', $event)">Daily</a> &middot;
       <a v-bind:class="{selected: mode === 'week'}" href="#" v-on:click="switchMode('week', $event)">Weekly</a> &middot;
       <a v-bind:class="{selected: mode === 'month'}" href="#" v-on:click="switchMode('month', $event)">Monthly</a> &middot;
@@ -28,7 +28,7 @@
       <div class="category" v-bind:class="[category]">
         <h3>{{ category }} </h3>
         <ol>
-          <li class="post" v-for="post in db[category].posts.slice(0, db[category].showLimit)">
+          <li class="post animated fadeInUp" v-for="post in db[category].posts.slice(0, db[category].showLimit)">
             <a class="title" :href="post.url">{{ post.title }}</a>
             <div class="info">
               <a class="comments" :href="post.permalink">comments ({{ post.comments }})</a>
