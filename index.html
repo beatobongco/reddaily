@@ -22,7 +22,7 @@
       <a v-bind:class="{selected: mode === 'day'}" href="#" v-on:click="switchMode('day', $event)">Daily</a> &middot;
       <a v-bind:class="{selected: mode === 'week'}" href="#" v-on:click="switchMode('week', $event)">Weekly</a> &middot;
       <a v-bind:class="{selected: mode === 'month'}" href="#" v-on:click="switchMode('month', $event)">Monthly</a> &middot;
-      <a v-bind:class="{selected: mode === 'all '}" href="#" v-on:click="switchMode('all', $event)">All time</a>
+      <a v-bind:class="{selected: mode === 'all'}" href="#" v-on:click="switchMode('all', $event)">All time</a>
     </div>
     <div class="category-container" v-for="category in categories" v-cloak>
       <div class="category" v-bind:class="[category]">
