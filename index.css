@@ -91,7 +91,7 @@ ol {
 .category-container .readmore {
   display: block;
   text-align: center;
-  color: #888888;
+  color: #7f8c8d;
   font-size: 12px;
   text-decoration: underline;
 }
@@ -110,17 +110,17 @@ ol {
 }
 .list-container ol .post .title:visited,
 .list-container ul .post .title:visited {
-  color: #888888;
+  color: #7f8c8d;
 }
 .list-container ol .post .info,
 .list-container ul .post .info {
   margin: 5px 0 10px;
   font-size: 10px;
-  color: #888888;
+  color: #7f8c8d;
 }
 .list-container ol .post .info a,
 .list-container ul .post .info a {
-  color: #888888;
+  color: #7f8c8d;
 }
 .list-container ol .post .info .subreddit,
 .list-container ul .post .info .subreddit {
