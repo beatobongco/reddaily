@@ -1,6 +1,7 @@
 @headerfontcolor: #000;
 @fontcolor: #000;
 @fontcolordarker: #7f8c8d;
+@numcolumns: 4;
 
 html {
   box-sizing: border-box;
@@ -71,7 +72,7 @@ ol {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  width: 25%;
+  width: 100% / @numcolumns;
   max-width: 100%;
   min-width: 300px;
   height: 100%;
