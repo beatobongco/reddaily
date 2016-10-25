@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RedDaily - Your daily dose of less distracting reddit</title>
+  <title>reddaily - Your daily dose of less distracting reddit</title>
   <meta property="og:title" content="RedDaily" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://beatobongco.com/RedDaily/" />
@@ -15,10 +15,10 @@
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-  <h1 class="hidden">RedDaily</h1>
+  <h1 class="hidden">reddaily</h1>
   <div class="app" id="app">
     <div class="header">
-      <h1><span>Red</span><span>Daily</span></h1>
+      <h1><span>red</span><span>daily</span></h1>
       <a v-bind:class="{selected: mode === 'day'}" href="#" v-on:click="switchMode('day', $event)">Daily</a> &middot;
       <a v-bind:class="{selected: mode === 'week'}" href="#" v-on:click="switchMode('week', $event)">Weekly</a> &middot;
       <a v-bind:class="{selected: mode === 'month'}" href="#" v-on:click="switchMode('month', $event)">Monthly</a> &middot;
@@ -51,6 +51,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.3.0/superagent.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script type="text/javascript" src="settings.js"></script>
 <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

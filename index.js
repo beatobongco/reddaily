@@ -1,34 +1,9 @@
 // - accept subreddit to watch with validation, save to localforage
-var subredditMax = 3
 var mode = location.hash.replace("#", "")
 
 if (["day", "week", "month", "year", "all"].indexOf(location.hash.replace("#", "")) < 0) {
   mode = "day"
   location.hash = "day"
-}
-
-var items = []
-var db = {
-  tech: {
-    subreddits: ["programming", "futurology", "tech", "linux", "learnprogramming", "python", "javascript"],
-    posts: [],
-    showLimit: 5
-  },
-  design: {
-    subreddits: ["design", "graphic_design", "web_design", "webdesignnews", "UserExperience", "DataIsBeautiful", "typography"],
-    posts: [],
-    showLimit: 5
-  },
-  sports: {
-    subreddits: ["climbing", "bouldering", "climbingvids", "climbharder"],
-    posts: [],
-    showLimit: 5
-  },
-  trivia: {
-    subreddits: ["interestingasfuck", "IAmA", "explainlikeimfive", "books", "askhistorians", "LifeProTips", "lifehacks", "YouShouldKnow", "TrueReddit"],
-    posts: [],
-    showLimit: 5
-  }
 }
 
 function fixRedditLinks(link) {
@@ -42,8 +17,9 @@ var app = new Vue({
   el: '#app',
   data: {
     mode: mode,
-    categories: ["tech", "design", "sports", "trivia"],
+    categories: categories,
     db: db,
+    postsPerSubreddit: subredditMax,
   },
   watch: {
     mode: function() {
@@ -80,7 +56,7 @@ var app = new Vue({
         superagent
           .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + this.mode)
           .end(function(e, r) {
-            var posts = r.body.data.children.slice(0, subredditMax)
+            var posts = r.body.data.children.slice(0, this.postsPerSubreddit)
             //preprocess the each post
             for (var i = 0; i < posts.length; i++) {
               var data = posts[i].data
