@@ -2,9 +2,13 @@
 
 https://beatobongco.com/reddaily/
 
-A simple and completely client-side aggregator that gives you your daily dose of reddit with less of the distraction! reddaily goes to all your favorite subreddits, gets the highest scoring posts, and displays them by category so its easy to digest.
+A simple, responsive, and completely client-side aggregator that gives you your daily dose of reddit with less of the distraction! reddaily goes to all your favorite subreddits, gets the highest scoring posts, and displays them by category so its easy to digest.
 
+## Desktop view
 ![image](https://cloud.githubusercontent.com/assets/3739702/19669928/d4e2acc4-9a95-11e6-83a4-c82f53883935.png)
+
+## Mobile view
+![image](https://cloud.githubusercontent.com/assets/3739702/19671700/2bf5b800-9aa3-11e6-88ca-200aed29c3bb.png)
 
 ## Customizing
 
