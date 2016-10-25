@@ -1,4 +1,4 @@
-var subredditMax = 3 // how many posts to pull per subreddit from top
+var subredditMax = 3 // how many posts to pull per subreddit from top scoring
 var showLimit = 5 // how many posts to show at first and how many to add for each "read more" click
 var categories = ["tech", "design", "sports", "trivia"]
 var db = {
