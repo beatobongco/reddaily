@@ -65,7 +65,7 @@ Finally, fine tune your column layout by editing the `index.less` file and compi
 @numcolumns: 4
 ```
 
-That's it, you should be good to go! Hope you enjoy your reddaily experience. :)
+That's it, you should be good to go! Just open up `index.html` on your favorite browser. Hope you enjoy your reddaily experience. :)
 
 ## License
 
