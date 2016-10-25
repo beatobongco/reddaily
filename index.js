@@ -1,7 +1,6 @@
-// - accept subreddit to watch with validation, save to localforage
 var mode = location.hash.replace("#", "")
 
-if (["day", "week", "month", "year", "all"].indexOf(location.hash.replace("#", "")) < 0) {
+if (["day", "week", "month", "year", "all"].indexOf(mode) < 0) {
   mode = "day"
   location.hash = "day"
 }
@@ -57,12 +56,13 @@ var app = new Vue({
           .get("https://www.reddit.com/r/" + subreddits[i] + "/top/.json?t=" + this.mode)
           .end(function(e, r) {
             var posts = r.body.data.children.slice(0, this.postsPerSubreddit)
-            //preprocess the each post
+            //preprocess each post
             for (var i = 0; i < posts.length; i++) {
               var data = posts[i].data
               var url = data.url
               url = fixRedditLinks(url)
-              var title = data.title.replace("&amp;", "&")
+              var title = data.title.replace(/&amp;/g, "&")
+
               //extra rules go here
 
               var permalink = "https://www.reddit.com" + data.permalink
@@ -82,7 +82,9 @@ var app = new Vue({
     },
   },
 })
+
 if (location.hash === "") {
   location.hash = "day"
 }
+
 app.retrieveAll()
