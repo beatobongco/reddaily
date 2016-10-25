@@ -25,7 +25,7 @@ Edit the `db` variable with your chosen categories. Each entry must conform to t
 
 ```
 <category_name>: {
-  subreddits: [<subreddit 1>, <subreddit 2>, ...],
+  subreddits: [<subreddit_1>, <subreddit_2>, ...],
   posts: [],
   showLimit: showLimit
 }
